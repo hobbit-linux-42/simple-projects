@@ -1,0 +1,30 @@
+#!/usr/bin/python3
+from hear_color import play_hsv 
+from colorsys import rgb_to_hsv
+from sys import argv
+import matplotlib.pyplot as plt
+from matplotlib import image as mpimg
+from PIL import Image
+try:
+    image_path = argv[1]
+except:
+    print("Error. Missing Image Relative Path")
+    exit(1)
+plt.title(image_path.split("/")[-1])
+plt.xlabel("X")
+plt.ylabel("Y")
+image_plt = mpimg.imread(image_path)
+plt.imshow(image_plt)
+image = Image.open(image_path).convert('RGB')
+
+def onclick(event):
+    global image
+    try:
+        cords = (event.xdata, event.ydata)
+    except:
+        pass
+    r, g, b = image.getpixel(cords)
+    play_hsv(rgb_to_hsv(r, g, b))
+
+plt.connect('button_press_event', onclick)
+plt.show()

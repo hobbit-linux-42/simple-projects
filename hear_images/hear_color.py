@@ -17,12 +17,12 @@ def color_popup():
         exit(2)
     return rgb_to_hsv(color[0][0], color[0][1], color[0][2])
 
-def hear_color(hsv):
+def play_hsv(hsv):
     init()
     play = lambda duration, frequency: system('play -n synth %s sin %s' % (duration, frequency))
-    duration = hsv[2]/25
-    frequency = (hsv[0]*100)*5+200
-    volume = int(hsv[1]*100)+5
+    duration = hsv[2]/25 +1
+    frequency = (hsv[0]*100)*5 +200
+    volume = int(hsv[1]*100) +10
     B = Fore.BLUE
     G = Fore.GREEN
     R = Fore.RED
@@ -42,4 +42,4 @@ def hear_color(hsv):
     except:
         print("fail playing audio, to try install the sox package")
 if __name__ == "__main__":
-    hear_color(color_popup())
+    play_hsv(color_popup())
