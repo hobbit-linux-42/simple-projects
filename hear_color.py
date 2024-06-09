@@ -20,7 +20,7 @@ def color_popup():
 def hear_color(hsv):
     init()
     play = lambda duration, frequency: system('play -n synth %s sin %s' % (duration, frequency))
-    duration = hsv[2]/20
+    duration = hsv[2]/25
     frequency = (hsv[0]*100)*5+200
     volume = int(hsv[1]*100)+5
     B = Fore.BLUE
@@ -40,6 +40,6 @@ def hear_color(hsv):
     try:
         play(duration, frequency)
     except:
-        print("fail playing audio, try install the sox package")
+        print("fail playing audio, to try install the sox package")
 if __name__ == "__main__":
     hear_color(color_popup())
